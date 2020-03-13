@@ -10,6 +10,8 @@ const invalidMessage =
 ruleTester.run('no-variable-string', ruleNoVariableString, {
     valid: [
         "gettext('hello')",
+        "gettext('hello' + 'world')",
+        "gettext('hello' + 'big' + 'world')",
         "i18n.gettext('hello')",
         "ngettext('cat', '%d cats', 5)",
         "ngettext('cat', '%d cats', count)",
@@ -75,7 +77,7 @@ ruleTester.run('no-variable-string', ruleNoVariableString, {
             ],
         },
         {
-            code: "gettext('hello' + 'world')",
+            code: "gettext('hello' + foovar)",
             errors: [
                 {
                     message: invalidMessage,

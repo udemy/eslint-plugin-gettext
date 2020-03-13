@@ -39,12 +39,14 @@ Disallow non literal strings inside common `gettext` functions. This is a very c
 // Disallows any non string literals in string reserved fields:
 gettext(variable)
 gettext(123)
+gettext('foo' + variable)
 ngettext(varA, varB, 5)
 pgettext(varA, varB)
 npgettext(varA, varB, varC, 5)
 
 // Allows:
 gettext('hello')
+gettext('hello' + 'world')
 ngettext('cat', '%d cats', 5)
 pgettext('homepage', 'hello')
 npgettext('homepage', 'cat', '%d cats', 5)
