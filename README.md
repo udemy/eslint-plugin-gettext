@@ -43,6 +43,8 @@ gettext('foo' + variable)
 ngettext(varA, varB, 5)
 pgettext(varA, varB)
 npgettext(varA, varB, varC, 5)
+ninterpolate(varA, varB, 5)
+ninterpolate(varA, varB, 5, {})
 
 // Allows:
 gettext('hello')
@@ -52,6 +54,8 @@ pgettext('homepage', 'hello')
 npgettext('homepage', 'cat', '%d cats', 5)
 i18n.gettext('hello') // any object can expose the gettext API
 this.gettext('hello')
+ninterpolate('cat', '%d cats', 5)
+ninterpolate('cat', '%(count)s cats', 5, {count: 5})
 ```
 
 ### `gettext/required-positional-markers-for-multiple-variables`
