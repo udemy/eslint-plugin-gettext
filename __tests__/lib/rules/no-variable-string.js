@@ -20,6 +20,8 @@ ruleTester.run('no-variable-string', ruleNoVariableString, {
         "i18n.pgettext('homePage', 'hello')",
         "npgettext('homepage', 'cat', '%d cats', 5)",
         "i18n.npgettext('homepage', 'cat', '%d cats', 5)",
+        "ninterpolate('cat', '%d cats', 5)",
+        "ninterpolate('cat', '%(count)s cats', 5, {count: 5})",
     ],
     invalid: [
         {
@@ -249,6 +251,24 @@ ruleTester.run('no-variable-string', ruleNoVariableString, {
         },
         {
             code: "npgettext('homepage', cat, '%d cats', 5)",
+            errors: [
+                {
+                    message: invalidMessage,
+                    type: 'Identifier',
+                },
+            ],
+        },
+        {
+            code: "ninterpolate(cat, 'cats', 5)",
+            errors: [
+                {
+                    message: invalidMessage,
+                    type: 'Identifier',
+                },
+            ],
+        },
+        {
+            code: "ninterpolate('cat', cats, 5)",
             errors: [
                 {
                     message: invalidMessage,
