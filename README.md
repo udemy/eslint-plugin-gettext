@@ -24,6 +24,7 @@ npm install eslint-plugin-gettext --save-dev
   "plugins": ["gettext"],
   "rules": {
     "gettext/no-variable-string": "error",
+    "gettext/no-interpolate-string": "error",
     "gettext/required-positional-markers-for-multiple-variables": "error"
   }
 }
@@ -56,6 +57,19 @@ i18n.gettext('hello') // any object can expose the gettext API
 this.gettext('hello')
 ninterpolate('cat', '%d cats', 5)
 ninterpolate('cat', '%(count)s cats', 5, {count: 5})
+```
+
+### `gettext/no-interpolate-string`
+
+Disallow literal strings inside `interpolate` functions. The interpolated string must be (a variable) wrapped with gettext.
+
+```js
+// Disallows:
+interpolate('bla')
+
+// Allows:
+interpolate(gettext('bla'))
+interpolate(hopefullyTranslatedVar)
 ```
 
 ### `gettext/required-positional-markers-for-multiple-variables`
